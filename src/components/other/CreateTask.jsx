@@ -24,11 +24,11 @@ const Createtask = () => {
       failed: false,
     };
 
-    // Get current employee data
+
     const data = userdata?.employees || [];
 
     if (assignto) {
-      // Update employee data with the new task
+  
       const updatedData = data.map((employee) => {
         if (assignto === employee.firstname) {
           // Ensure the employee has a 'tasks' array
@@ -37,7 +37,7 @@ const Createtask = () => {
             employee.taskCount = { newtask: 0, completed: 0, failed: 0, active: 0 };
           }
 
-          // Add the new task to the employee's tasks array
+          
           employee.tasks.push(newtask);
 
           // Increment the task count for new tasks
@@ -46,20 +46,20 @@ const Createtask = () => {
         return employee;
       });
 
-      // Update the context with the new employee data
+
       setuserdata({ ...userdata, employees: updatedData });
 
-      // Update localStorage with the updated employee data
+    
       localStorage.setItem('employees', JSON.stringify(updatedData));
 
-      // Log the updated data for debugging
+
       console.log("Updated employee data:", updatedData);
 
     } else {
       alert("Please select an employee to assign the task to.");
     }
 
-    // Reset the form after submission
+  
     setTitle('');
     setDescription('');
     setDate('');
