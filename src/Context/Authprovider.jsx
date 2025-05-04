@@ -4,20 +4,20 @@ import { getlocalstorage, setlocalstorage } from '../utils/localstorage';
 export const Authcontext = createContext();
 
 const Authprovider = ({ children }) => {
-  const [userdata, setuserdata] = useState({ employees: [], admin: [] }); // Make sure we have both employees and admin by default
+  const [userdata, setuserdata] = useState({ employees: [], admin: [] }); 
 
   useEffect(() => {
-    // Initialize localStorage with default data if not already
+    
     setlocalstorage();
 
-    // Get data from localStorage
+  
     const data = getlocalstorage();
 
-    // Ensure we get a consistent structure
+   
     if (data && Array.isArray(data.employees) && Array.isArray(data.admin)) {
       setuserdata(data);
     } else {
-      // fallback in case of invalid structure
+    
       setuserdata({ employees: [], admin: [] });
     }
   }, []);
